@@ -15,6 +15,12 @@
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.owners.index')" :active="request()->routeIs('admin.owners.index')">
+                        Owner_Index
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.expired-owners.index')" :active="request()->routeIs('admin.expired-owners.index')">
+                        Exprired_Owner_Index
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -65,6 +71,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.owners.index')" :active="request()->routeIs('admin.owners.index')">
+                Owner_Index
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.expired-owners.index')" :active="request()->routeIs('admin.expired-owners.index')">
+                Exprired_Owner_Index
             </x-responsive-nav-link>
         </div>
 

@@ -34,11 +34,9 @@ class RedirectIfAuthenticated
         if(Auth::guard(self::GUARD_OWNER)->check() && $request->routeIs('owner.*')){
             return redirect(RouteServiceProvider::OWNER_HOME);
         }
-
         if(Auth::guard(self::GUARD_ADMIN)->check()& $request->routeIs('admin.*')) {
             return redirect(RouteServiceProvider::ADMIN_HOME);
         }
-
         if(Auth::guard(self::GUARD_USER)->check()& $request->routeIs('user.*')) {
             return redirect(RouteServiceProvider::HOME);
         }
