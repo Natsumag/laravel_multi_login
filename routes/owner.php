@@ -8,8 +8,9 @@ use App\Http\Controllers\Owner\Auth\NewPasswordController;
 use App\Http\Controllers\Owner\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Owner\Auth\RegisteredUserController;
 use App\Http\Controllers\Owner\Auth\VerifyEmailController;
-use App\Http\Controllers\Owner\ShopController;
 use App\Http\Controllers\Owner\ImageController;
+use App\Http\Controllers\Owner\ProductController;
+use App\Http\Controllers\Owner\ShopController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +22,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('owner.welcome');
-});
 
 Route::prefix('shops')
     ->middleware('auth:owners')
@@ -39,17 +36,14 @@ Route::resource('images', ImageController::class)
     ->middleware('auth:owners')
     ->except(['show']);
 
+Route::resource('products', ProductController::class)
+    ->middleware('auth:owners')
+    ->except(['show']);
+
 Route::get('/dashboard', function () {
     return view('owner.dashboard');
 })->middleware(['auth:owners'])->name('dashboard');
 
-
-Route::get('/register', [RegisteredUserController::class, 'create'])
-    ->middleware('guest')
-    ->name('register');
-
-Route::post('/register', [RegisteredUserController::class, 'store'])
-    ->middleware('guest');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->middleware('guest')

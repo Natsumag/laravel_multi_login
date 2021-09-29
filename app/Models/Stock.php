@@ -2,21 +2,19 @@
 
 namespace App\Models;
 
-use App\Models\Owner;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Stock extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'owner_id',
-        'filename',
-    ];
+    protected $table = 't_stocks';
 
-    public function owner()
-    {
-        return $this->belongsTo(Owner::class);
-    }
+    protected $fillable = [
+        'shop_id',
+        'product_id',
+        'type',
+        'quantity'
+    ];
 }

@@ -77,7 +77,6 @@ class OwnersController extends Controller
             throw $e;
         }
 
-
         return redirect()
             ->route('admin.owners.index')
             ->with(['message' => 'Create Succesful!', 'status' => 'info']);

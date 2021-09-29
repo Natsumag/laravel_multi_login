@@ -26,6 +26,11 @@
                         Images
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('owner.products.index')" :active="request()->routeIs('owner.products.index')">
+                        Products
+                    </x-nav-link>
+                </div>
 
             </div>
 
@@ -86,6 +91,11 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-nav-link :href="route('owner.images.index')" :active="request()->routeIs('owner.images.index')">
                 Images
+            </x-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-nav-link :href="route('owner.products.index')" :active="request()->routeIs('owner.products.index')">
+                Products
             </x-nav-link>
         </div>
         <!-- Responsive Settings Options -->
