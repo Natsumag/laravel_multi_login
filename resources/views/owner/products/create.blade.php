@@ -71,10 +71,9 @@
                                 </div>
                             </div>
                             <x-select-image :images="$images" name="image1" />
-{{--                            <x-select-image :images="$images" name="image2" />--}}
-{{--                            <x-select-image :images="$images" name="image3" />--}}
-{{--                            <x-select-image :images="$images" name="image4" />--}}
-{{--                            <x-select-image :images="$images" name="image5" />--}}
+                            <x-select-image :images="$images" name="image2" />
+                            <x-select-image :images="$images" name="image3" />
+                            <x-select-image :images="$images" name="image4" />
 
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative flex justify-around">
@@ -88,7 +87,7 @@
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="p-2 w-full flex justify-around mt-4">
                                     <button type="button" onclick="location.href='{{ route('owner.products.index') }}'" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">Back</button>
-                                    <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Update</button>
+                                    <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Create</button>
                                 </div>
                             </div>
                         </div>

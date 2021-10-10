@@ -10,11 +10,9 @@ use App\Models\PrimaryCategory;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\Stock;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -43,7 +41,7 @@ class ProductController extends Controller
     public function index()
     {
 
-        // $ownerInfo = Owner::findOrFail(Auth::id())->shop->product; // 無駄が多い。「n+1問題」で検索
+        // $ownerInfo = Owner::findOrFail(Auth::id())->shop->product; // これだと無駄が多い。「n+1問題」で検索
         $ownerInfo = Owner::with('shop.product.image')
             ->where('id', Auth::id())
             ->get(); // 「Eagerロードの制約」を参照
@@ -91,7 +89,10 @@ class ProductController extends Controller
                     'sort_order' => $request->sort_order,
                     'shop_id' => $request->shop_id,
                     'secondary_category_id' => $request->category,
-                    'image_id' => $request->image1,
+                    'image1' => $request->image1,
+                    'image2' => $request->image2,
+                    'image3' => $request->image3,
+                    'image4' => $request->image4,
                     'is_selling' => $request->is_selling,
                 ]);
 
@@ -170,7 +171,10 @@ class ProductController extends Controller
                     $product->sort_order = $request->sort_order;
                     $product->shop_id = $request->shop_id;
                     $product->secondary_category_id = $request->category;
-                    $product->image_id = $request->image1;
+                    $product->image1 = $request->image1;
+                    $product->image2 = $request->image2;
+                    $product->image3 = $request->image3;
+                    $product->image4 = $request->image4;
                     $product->is_selling = $request->is_selling;
                     $product->save();
 
@@ -189,7 +193,6 @@ class ProductController extends Controller
                 Log::error($e);
                 throw $e;
             }
-
 
             return redirect()
                 ->route('owner.products.index')

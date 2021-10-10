@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\OwnerRequest;
 use App\Models\Owner;
 use App\Models\Shop;
 use Illuminate\Http\Request;
@@ -48,14 +49,8 @@ class OwnersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OwnerRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
-            'password' => ['required', 'confirmed', 'min:8'],
-        ]);
-
         try {
             DB::transaction(function () use($request)
             {
@@ -102,7 +97,7 @@ class OwnersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OwnerRequest $request, $id)
     {
         $owner = Owner::findOrFail($id);
         $owner->name = $request->name;

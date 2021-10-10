@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Owner\ImageRequest;
 use App\Models\Image;
 use App\Http\Requests\UploadImageRequest;
 use App\Models\Product;
@@ -95,11 +96,8 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ImageRequest $request, $id)
     {
-        $request->validate([
-            'title' => 'string|max:50'
-        ]);
         $image = Image::findOrFail($id);
 
         $image->title = $request->title;
@@ -120,34 +118,34 @@ class ImageController extends Controller
     {
         $image = Image::findOrFail($id);
 
-        $imageInProducts = Product::where('image_id', $image->id)->get();
-        // ->orWhere('image2', $image->id)
-        // ->orWhere('image3', $image->id)
-        // ->orWhere('image4', $image->id)
+        $imageInProducts = Product::where('image1', $image->id)
+            ->orWhere('image2', $image->id)
+            ->orWhere('image3', $image->id)
+            ->orWhere('image4', $image->id)
+            ->get();
 
         if ($imageInProducts) {
             $imageInProducts->each(function($product) use($image) {
-                if ($product->image_id === $image->id) {
-                    $product->image_id = null;
+                if ($product->image1 === $image->id) {
+                    $product->image1 = null;
                     $product->save();
                 }
-                // if ($product->image2 === $image->id) {
-                //     $product->image2 = null;
-                //     $product->save();
-                // }
-                // if ($product->image3 === $image->id) {
-                //     $product->image3 = null;
-                //     $product->save();
-                // }
-                // if ($product->image4 === $image->id) {
-                //     $product->image4 = null;
-                //     $product->save();
-                // }
+                if ($product->image2 === $image->id) {
+                    $product->image2 = null;
+                    $product->save();
+                }
+                if ($product->image3 === $image->id) {
+                    $product->image3 = null;
+                    $product->save();
+                }
+                if ($product->image4 === $image->id) {
+                    $product->image4 = null;
+                    $product->save();
+                }
             });
         }
 
         $filePath = 'public/products/' . $image->filename;
-
 
         Storage::delete($filePath);
 

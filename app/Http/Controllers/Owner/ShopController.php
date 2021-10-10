@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UploadImageRequest;
+use App\Http\Requests\Owner\ShopRequest;
 use App\Models\Shop;
 use App\Services\ImageService;
 use Illuminate\Support\Facades\Auth;
@@ -43,14 +43,8 @@ class ShopController extends Controller
         return view('owner.shops.edit', compact('shop'));
     }
 
-    public function update(UploadImageRequest $request, $id)
+    public function update(ShopRequest $request, $id)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:50'],
-            'information' => ['required', 'string', 'max:255'],
-            'is_selling' => ['required'],
-        ]);
-
         $shop = Shop::findOrFail($id);
         $shop->name = $request->name;
         $shop->information = $request->information;

@@ -89,10 +89,10 @@
                                     </select>
                                 </div>
                             </div>
-                            <x-select-image :images="$images" name="image1" currendId="{{ $product->image_id }}" currentImage="{{ $product->imageFirst->filename ?? '' }}" />
-{{--                            <x-select-image :images="$images" name="image2" currendId="{{ $product->image2 }}" currentImage="{{ $product->imageSecond->filename ?? '' }}" />--}}
-{{--                            <x-select-image :images="$images" name="image3" currendId="{{ $product->image3 }}" currentImage="{{ $product->imageThird->filename ?? '' }}" />--}}
-{{--                            <x-select-image :images="$images" name="image4" currendId="{{ $product->image4 }}" currentImage="{{ $product->imageForth->filename ?? '' }}" />--}}
+                            <x-select-image :images="$images" name="image1" currendId="{{ $product->image1 }}" currentImage="{{ $product->imageFirst->filename ?? '' }}" />
+                            <x-select-image :images="$images" name="image2" currendId="{{ $product->image2 }}" currentImage="{{ $product->imageSecond->filename ?? '' }}" />
+                            <x-select-image :images="$images" name="image3" currendId="{{ $product->image3 }}" currentImage="{{ $product->imageThird->filename ?? '' }}" />
+                            <x-select-image :images="$images" name="image4" currendId="{{ $product->image4 }}" currentImage="{{ $product->imageForth->filename ?? '' }}" />
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative flex justify-around">
                                     <input type="radio" name="is_selling" id="is_selling" value="1" @if($product->is_selling === 1){ checked } @endif >
